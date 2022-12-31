@@ -2,6 +2,7 @@
 
 //Important note for using this program - Replace (error ) in for loop with less than key.
 // notes in the melody:
+const int speaker = 8;
 int melody[] = {
 
   NOTE_C4, NOTE_C4, 
@@ -36,7 +37,7 @@ int noteDurations[] = {
 // there are two values per note (pitch and duration), so for each note there are four bytes
 
 void setup() {
-  noTone(8);
+  noTone(speaker);
 }
 
 void loop() {
@@ -46,13 +47,13 @@ void loop() {
     // to calculate the note duration, take one second divided by the note type.
     //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
     int noteDuration = 1000 / noteDurations[thisNote];
-    tone(8, melody[thisNote], noteDuration*0.8);
+    tone(speaker, melody[thisNote], noteDuration*0.8);
 
     // to distinguish the notes, set a minimum time between them.
     // the note's duration + 30% seems to work well:
     int pauseBetweenNotes = noteDuration * 1.30;
     delay(pauseBetweenNotes);
     // stop the tone playing:
-    noTone(8);
+    noTone(speaker);
   }
 }
